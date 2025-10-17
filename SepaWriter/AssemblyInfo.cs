@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("Perrich.SepaWriter")]
+[assembly: AssemblyTitle("borjafp.SepaWriter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("PERRICHOT Florian")]
-[assembly: AssemblyProduct("Perrich.SepaWriter")]
+[assembly: AssemblyProduct("borjafp.SepaWriter")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
