@@ -30,10 +30,10 @@ dotnet clean
 dotnet pack SepaWriter/SepaWriter.csproj --configuration Release --output ./artifacts
 
 # Create package with specific version
-dotnet pack SepaWriter/SepaWriter.csproj --configuration Release --output ./artifacts /p:Version=2.0.1
+dotnet pack SepaWriter/SepaWriter.csproj --configuration Release --output ./artifacts /p:Version=X.Y.Z
 
-# Publish to NuGet.org (requires API key)
-dotnet nuget push ./artifacts/Perrich.SepaWriter.2.0.0.nupkg --api-key YOUR_API_KEY --source https://api.nuget.org/v3/index.json
+# Publish to NuGet.org (use environment variable for security)
+dotnet nuget push ./artifacts/Perrich.SepaWriter.2.0.0.nupkg --api-key $NUGET_API_KEY --source https://api.nuget.org/v3/index.json
 
 # Publish to local feed
 dotnet nuget push ./artifacts/Perrich.SepaWriter.2.0.0.nupkg --source ~/my-local-feed
@@ -126,8 +126,11 @@ dotnet test --logger "console;verbosity=detailed"
 
 ### Package already exists on NuGet
 ```bash
-# Use --skip-duplicate flag
-dotnet nuget push ./artifacts/*.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json
+# Use --skip-duplicate flag when pushing
+dotnet nuget push ./artifacts/*.nupkg --api-key $NUGET_API_KEY --skip-duplicate --source https://api.nuget.org/v3/index.json
+
+# Note: Store your API key in an environment variable for security
+# export NUGET_API_KEY="your-api-key-here"
 ```
 
 ## Useful Links

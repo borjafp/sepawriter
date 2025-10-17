@@ -1,6 +1,8 @@
 # Release Notes
 
-## Version 2.0.0 (Pending Release)
+## Version 2.0.0 (Target: 2025)
+
+This is a major update bringing the project to .NET 8 with enhanced packaging and CI/CD infrastructure.
 
 ### Major Changes
 - **Migrated to .NET 8**: The project now targets .NET 8.0 (LTS) alongside .NET Standard 2.0 for backward compatibility
