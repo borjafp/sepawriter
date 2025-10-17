@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace SepaWriter.Test
 {
@@ -70,10 +71,10 @@ namespace SepaWriter.Test
 
             const decimal total = (amount + amount2)*100;
 
-            Assert.AreEqual(total, transfert.HeaderControlSumInCents);
-            Assert.AreEqual(total, transfert.PaymentControlSumInCents);
+            ClassicAssert.AreEqual(total, transfert.HeaderControlSumInCents);
+            ClassicAssert.AreEqual(total, transfert.PaymentControlSumInCents);
 
-            Assert.AreEqual(RESULT, transfert.AsXmlString());
+            ClassicAssert.AreEqual(RESULT, transfert.AsXmlString());
         }
     }
 }

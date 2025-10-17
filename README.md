@@ -8,6 +8,19 @@ Only one PaymentInformation is managed but it can manage multiple transactions.
 
 It follow "Customer Credit Transfer Initiation" &lt;pain.001.001.03&gt; defined in ISO 20022 but also some specific french rules (field used size != allowed size). Debit uses &lt;pain.008.001.02&gt; defined in ISO 20022 and the same french restrictions.
 
+## NuGet Package
+
+This library is available as a NuGet package: `Perrich.SepaWriter`
+
+```bash
+dotnet add package Perrich.SepaWriter
+```
+
+## Requirements
+
+- .NET 8.0 or later
+- .NET Standard 2.0 compatible frameworks
+
 English usage guide :
 http://www.swift.com/assets/corporates/documents/our_solution/implementing_your_project_2009_iso20022_usage_guide.pdf
 
@@ -57,13 +70,13 @@ public class MySepaCreditTransfer
 
 Used libraries:
 ---
-- NUnit 3.12.0 for unit tests
-- Log4net 2.0.8 for log (used in XML validator)
+- NUnit 4.2.2 for unit tests
+- Log4net 3.0.1 for logging (used in XML validator)
 
 
 License:
 ---
-Copyright 2013-2020 PERRICHOT Florian
+Copyright 2013-2025 PERRICHOT Florian
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

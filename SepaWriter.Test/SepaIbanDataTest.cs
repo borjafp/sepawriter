@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace SepaWriter.Test
 {
@@ -20,7 +21,7 @@ namespace SepaWriter.Test
                     Name = Name
                 };
 
-            Assert.True(data.IsValid);
+            ClassicAssert.True(data.IsValid);
         }
 
         [Test]
@@ -33,7 +34,7 @@ namespace SepaWriter.Test
                 Name = Name
             };
 
-            Assert.True(data.IsValid);
+            ClassicAssert.True(data.IsValid);
         }
         
         [Test]
@@ -46,8 +47,8 @@ namespace SepaWriter.Test
                 Name = Name
             };
 
-            Assert.True(data.IsValid);
-            Assert.AreEqual(Iban, data.Iban);
+            ClassicAssert.True(data.IsValid);
+            ClassicAssert.AreEqual(Iban, data.Iban);
         }
 
         [Test]
@@ -60,9 +61,9 @@ namespace SepaWriter.Test
                     Name = Name
                 };
 
-            Assert.AreEqual(Bic, data.Bic);
-            Assert.AreEqual(Name, data.Name);
-            Assert.AreEqual(Iban, data.Iban);
+            ClassicAssert.AreEqual(Bic, data.Bic);
+            ClassicAssert.AreEqual(Name, data.Name);
+            ClassicAssert.AreEqual(Iban, data.Iban);
         }
 
         [Test]
@@ -74,7 +75,7 @@ namespace SepaWriter.Test
                     Name = Name
                 };
 
-            Assert.False(data.IsValid);
+            ClassicAssert.False(data.IsValid);
         }
 
         [Test]
@@ -86,7 +87,7 @@ namespace SepaWriter.Test
                     Name = Name
                 };
 
-            Assert.False(data.IsValid);
+            ClassicAssert.False(data.IsValid);
         }
 
         [Test]
@@ -98,7 +99,7 @@ namespace SepaWriter.Test
                     Iban = Iban
                 };
 
-            Assert.False(data.IsValid);
+            ClassicAssert.False(data.IsValid);
         }
 
         [Test]
@@ -113,27 +114,27 @@ namespace SepaWriter.Test
                     Name = longName
                 };
 
-            Assert.AreEqual(expectedName, data.Name);
+            ClassicAssert.AreEqual(expectedName, data.Name);
         }
 
         [Test]
         public void ShouldRejectBadBic()
         {
-            Assert.That(() => { new SepaIbanData { Bic = "BIC" }; },
+            ClassicAssert.That(() => { new SepaIbanData { Bic = "BIC" }; },
                 Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("Null or Invalid length of BIC"));            
         }
 
         [Test]
         public void ShouldRejectTooLongIban()
         {
-            Assert.That(() => { new SepaIbanData { Iban = "FR012345678901234567890123456789012" }; },
+            ClassicAssert.That(() => { new SepaIbanData { Iban = "FR012345678901234567890123456789012" }; },
                 Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("Null or Invalid length of IBAN code"));
         }
 
         [Test]
         public void ShouldRejectTooShortIban()
         {
-            Assert.That(() => { new SepaIbanData { Iban = "FR01234567890" }; },
+            ClassicAssert.That(() => { new SepaIbanData { Iban = "FR01234567890" }; },
                 Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("Null or Invalid length of IBAN code"));
         }
     }

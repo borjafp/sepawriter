@@ -1,18 +1,54 @@
 /.hgignore
-
 /*.suo
-
 /*.user
-
 /.hg/*
-
 */obj/*
-
 */bin/*
-
 .sonar
 /TestResults
 /packages
 /*.nupkg
 /.nuget
 /.vs
+
+# .NET artifacts
+*.dll
+*.pdb
+*.cache
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+
+# Visual Studio cache/options
+.vs/
+.vscode/
+
+# Rider
+.idea/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates

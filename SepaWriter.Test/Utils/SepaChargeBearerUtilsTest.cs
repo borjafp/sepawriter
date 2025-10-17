@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SepaWriter.Utils;
 
 namespace SepaWriter.Test.Utils
@@ -10,15 +11,15 @@ namespace SepaWriter.Test.Utils
         [Test]
         public void ShouldRetrieveChargeBearerFromString()
         {
-            Assert.AreEqual(SepaChargeBearer.CRED,  SepaChargeBearerUtils.SepaChargeBearerFromString("CRED"));
-            Assert.AreEqual(SepaChargeBearer.DEBT, SepaChargeBearerUtils.SepaChargeBearerFromString("DEBT"));
-            Assert.AreEqual(SepaChargeBearer.SHAR,  SepaChargeBearerUtils.SepaChargeBearerFromString("SHAR"));
+            ClassicAssert.AreEqual(SepaChargeBearer.CRED,  SepaChargeBearerUtils.SepaChargeBearerFromString("CRED"));
+            ClassicAssert.AreEqual(SepaChargeBearer.DEBT, SepaChargeBearerUtils.SepaChargeBearerFromString("DEBT"));
+            ClassicAssert.AreEqual(SepaChargeBearer.SHAR,  SepaChargeBearerUtils.SepaChargeBearerFromString("SHAR"));
         }
 
         [Test]
         public void ShouldRejectUnknownChargeBearer()
         {
-            Assert.That(() => { SepaChargeBearerUtils.SepaChargeBearerFromString("unknown value"); },
+            ClassicAssert.That(() => { SepaChargeBearerUtils.SepaChargeBearerFromString("unknown value"); },
                 Throws.TypeOf<ArgumentException>().With.Property("Message").Contains("Unknown Charge Bearer"));
             
         }
@@ -26,9 +27,9 @@ namespace SepaWriter.Test.Utils
         [Test]
         public void ShouldRetrieveStringFromChargeBearer()
         {
-            Assert.AreEqual("CRED", SepaChargeBearerUtils.SepaChargeBearerToString(SepaChargeBearer.CRED));
-            Assert.AreEqual("DEBT", SepaChargeBearerUtils.SepaChargeBearerToString(SepaChargeBearer.DEBT));
-            Assert.AreEqual("SHAR", SepaChargeBearerUtils.SepaChargeBearerToString(SepaChargeBearer.SHAR));
+            ClassicAssert.AreEqual("CRED", SepaChargeBearerUtils.SepaChargeBearerToString(SepaChargeBearer.CRED));
+            ClassicAssert.AreEqual("DEBT", SepaChargeBearerUtils.SepaChargeBearerToString(SepaChargeBearer.DEBT));
+            ClassicAssert.AreEqual("SHAR", SepaChargeBearerUtils.SepaChargeBearerToString(SepaChargeBearer.SHAR));
         }
     }
 }

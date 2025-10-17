@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Xml;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SepaWriter.Utils;
 
 namespace SepaWriter.Test.Utils
@@ -16,7 +17,7 @@ namespace SepaWriter.Test.Utils
             var el = (XmlElement)xml.AppendChild(xml.CreateElement("Document"));
 
             XmlUtils.CreateBic(el, new SepaIbanData { Bic="01234567" });
-            Assert.AreEqual("<FinInstnId><BIC>01234567</BIC></FinInstnId>", el.InnerXml);
+            ClassicAssert.AreEqual("<FinInstnId><BIC>01234567</BIC></FinInstnId>", el.InnerXml);
         }
 
         [Test]
@@ -27,7 +28,7 @@ namespace SepaWriter.Test.Utils
             var el = (XmlElement)xml.AppendChild(xml.CreateElement("Document"));
 
             XmlUtils.CreateBic(el, new SepaIbanData { UnknownBic = true});
-            Assert.AreEqual("<FinInstnId><Othr><Id>NOTPROVIDED</Id></Othr></FinInstnId>", el.InnerXml);
+            ClassicAssert.AreEqual("<FinInstnId><Othr><Id>NOTPROVIDED</Id></Othr></FinInstnId>", el.InnerXml);
         }
     }
 }
