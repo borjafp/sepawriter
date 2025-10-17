@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace SepaWriter.Test
 {
@@ -22,7 +23,7 @@ namespace SepaWriter.Test
         {
             var data = new SepaDebitTransferTransaction();
 
-            Assert.AreEqual("EUR", data.Currency);
+            ClassicAssert.AreEqual("EUR", data.Currency);
         }
 
         [Test]
@@ -50,37 +51,37 @@ namespace SepaWriter.Test
                     SequenceType = SepaSequenceType.FIRST
                 };
 
-            Assert.AreEqual(currency, data.Currency);
-            Assert.AreEqual(amount, data.Amount);
-            Assert.AreEqual(id, data.Id);
-            Assert.AreEqual(endToEndId, data.EndToEndId);
-            Assert.AreEqual(remittanceInformation, data.RemittanceInformation);
-            Assert.AreEqual(Bic, data.Debtor.Bic);
-            Assert.AreEqual(Iban, data.Debtor.Iban);
-            Assert.AreEqual(Iban, data.Debtor.Iban);
-            Assert.AreEqual(mandateId, data.MandateIdentification);
-            Assert.AreEqual(signatureDate, data.DateOfSignature);
-            Assert.AreEqual(seqType, data.SequenceType);
+            ClassicAssert.AreEqual(currency, data.Currency);
+            ClassicAssert.AreEqual(amount, data.Amount);
+            ClassicAssert.AreEqual(id, data.Id);
+            ClassicAssert.AreEqual(endToEndId, data.EndToEndId);
+            ClassicAssert.AreEqual(remittanceInformation, data.RemittanceInformation);
+            ClassicAssert.AreEqual(Bic, data.Debtor.Bic);
+            ClassicAssert.AreEqual(Iban, data.Debtor.Iban);
+            ClassicAssert.AreEqual(Iban, data.Debtor.Iban);
+            ClassicAssert.AreEqual(mandateId, data.MandateIdentification);
+            ClassicAssert.AreEqual(signatureDate, data.DateOfSignature);
+            ClassicAssert.AreEqual(seqType, data.SequenceType);
 
             var data2 = data.Clone() as SepaDebitTransferTransaction;
 
-            Assert.NotNull(data2);
-            Assert.AreEqual(currency, data2.Currency);
-            Assert.AreEqual(amount, data2.Amount);
-            Assert.AreEqual(id, data2.Id);
-            Assert.AreEqual(endToEndId, data2.EndToEndId);
-            Assert.AreEqual(remittanceInformation, data2.RemittanceInformation);
-            Assert.AreEqual(Bic, data2.Debtor.Bic);
-            Assert.AreEqual(Iban, data2.Debtor.Iban);
-            Assert.AreEqual(mandateId, data2.MandateIdentification);
-            Assert.AreEqual(signatureDate, data2.DateOfSignature);
-            Assert.AreEqual(seqType, data2.SequenceType);
+            ClassicAssert.NotNull(data2);
+            ClassicAssert.AreEqual(currency, data2.Currency);
+            ClassicAssert.AreEqual(amount, data2.Amount);
+            ClassicAssert.AreEqual(id, data2.Id);
+            ClassicAssert.AreEqual(endToEndId, data2.EndToEndId);
+            ClassicAssert.AreEqual(remittanceInformation, data2.RemittanceInformation);
+            ClassicAssert.AreEqual(Bic, data2.Debtor.Bic);
+            ClassicAssert.AreEqual(Iban, data2.Debtor.Iban);
+            ClassicAssert.AreEqual(mandateId, data2.MandateIdentification);
+            ClassicAssert.AreEqual(signatureDate, data2.DateOfSignature);
+            ClassicAssert.AreEqual(seqType, data2.SequenceType);
         }
 
         [Test]
         public void ShouldRejectInvalidDebtor()
         {
-            Assert.That(() => { new SepaDebitTransferTransaction { Debtor = new SepaIbanData() }; },
+            ClassicAssert.That(() => { new SepaDebitTransferTransaction { Debtor = new SepaIbanData() }; },
                 Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("Debtor IBAN data are invalid."));
         }
 
@@ -88,7 +89,7 @@ namespace SepaWriter.Test
         public void ShouldUseADefaultSequenceType()
         {
             var transfert = new SepaDebitTransferTransaction();
-            Assert.AreEqual(SepaSequenceType.OOFF, transfert.SequenceType);
+            ClassicAssert.AreEqual(SepaSequenceType.OOFF, transfert.SequenceType);
         }
     }
 }

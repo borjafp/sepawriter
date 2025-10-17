@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;netstandard2.0</TargetFrameworks>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -15,8 +16,8 @@
     <None Remove="Xsd\pain.008.001.03.xsd" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="log4net" Version="2.0.12" />
-    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+    <PackageReference Include="log4net" Version="3.0.1" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Xsd\pain.001.001.03.xsd" />
@@ -27,9 +28,31 @@
 
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RootNamespace>SepaWriter</RootNamespace>
     <AssemblyName>Perrich.SepaWriter</AssemblyName>
+    
+    <!-- NuGet Package Metadata -->
+    <PackageId>Perrich.SepaWriter</PackageId>
+    <Version>2.0.0</Version>
+    <Authors>PERRICHOT Florian</Authors>
+    <Company>PERRICHOT Florian</Company>
+    <Product>Perrich.SepaWriter</Product>
+    <Description>Manage SEPA (Single Euro Payments Area) Credit and Debit Transfer for SEPA or international order. Supports pain.001.001.03, pain.001.001.04, pain.008.001.02, and pain.008.001.03 formats defined in ISO 20022.</Description>
+    <PackageTags>SEPA;SepaWriter;ISO20022;payment;credit-transfer;debit-transfer;banking;financial</PackageTags>
+    <PackageProjectUrl>https://github.com/borjafp/sepawriter</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/borjafp/sepawriter</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright 2013-2025 PERRICHOT Florian</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
 </Project>

@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SepaWriter.Utils;
 
 namespace SepaWriter.Test.Utils
@@ -10,16 +11,16 @@ namespace SepaWriter.Test.Utils
         [Test]
         public void ShouldRetrieveSequenceTypeFromString()
         {
-            Assert.AreEqual(SepaSequenceType.OOFF, SepaSequenceTypeUtils.SepaSequenceTypeFromString("OOFF"));
-            Assert.AreEqual(SepaSequenceType.FIRST, SepaSequenceTypeUtils.SepaSequenceTypeFromString("FRST"));
-            Assert.AreEqual(SepaSequenceType.RCUR, SepaSequenceTypeUtils.SepaSequenceTypeFromString("RCUR"));
-            Assert.AreEqual(SepaSequenceType.FINAL, SepaSequenceTypeUtils.SepaSequenceTypeFromString("FNAL"));
+            ClassicAssert.AreEqual(SepaSequenceType.OOFF, SepaSequenceTypeUtils.SepaSequenceTypeFromString("OOFF"));
+            ClassicAssert.AreEqual(SepaSequenceType.FIRST, SepaSequenceTypeUtils.SepaSequenceTypeFromString("FRST"));
+            ClassicAssert.AreEqual(SepaSequenceType.RCUR, SepaSequenceTypeUtils.SepaSequenceTypeFromString("RCUR"));
+            ClassicAssert.AreEqual(SepaSequenceType.FINAL, SepaSequenceTypeUtils.SepaSequenceTypeFromString("FNAL"));
         }
 
         [Test]
         public void ShouldRejectUnknownSequenceType()
         {
-            Assert.That(() => { SepaSequenceTypeUtils.SepaSequenceTypeFromString("unknown value"); },
+            ClassicAssert.That(() => { SepaSequenceTypeUtils.SepaSequenceTypeFromString("unknown value"); },
                 Throws.TypeOf<ArgumentException>().With.Property("Message").Contains("Unknown Sequence Type"));
             
         }
@@ -27,10 +28,10 @@ namespace SepaWriter.Test.Utils
         [Test]
         public void ShouldRetrieveStringFromSequenceType()
         {
-            Assert.AreEqual("OOFF", SepaSequenceTypeUtils.SepaSequenceTypeToString(SepaSequenceType.OOFF));
-            Assert.AreEqual("FRST", SepaSequenceTypeUtils.SepaSequenceTypeToString(SepaSequenceType.FIRST));
-            Assert.AreEqual("RCUR", SepaSequenceTypeUtils.SepaSequenceTypeToString(SepaSequenceType.RCUR));
-            Assert.AreEqual("FNAL", SepaSequenceTypeUtils.SepaSequenceTypeToString(SepaSequenceType.FINAL));
+            ClassicAssert.AreEqual("OOFF", SepaSequenceTypeUtils.SepaSequenceTypeToString(SepaSequenceType.OOFF));
+            ClassicAssert.AreEqual("FRST", SepaSequenceTypeUtils.SepaSequenceTypeToString(SepaSequenceType.FIRST));
+            ClassicAssert.AreEqual("RCUR", SepaSequenceTypeUtils.SepaSequenceTypeToString(SepaSequenceType.RCUR));
+            ClassicAssert.AreEqual("FNAL", SepaSequenceTypeUtils.SepaSequenceTypeToString(SepaSequenceType.FINAL));
         }
     }
 }

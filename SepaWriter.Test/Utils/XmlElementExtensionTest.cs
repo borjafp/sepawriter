@@ -1,6 +1,7 @@
 ﻿using System.Text;
 using System.Xml;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SepaWriter.Utils;
 
 namespace SepaWriter.Test.Utils
@@ -27,11 +28,11 @@ namespace SepaWriter.Test.Utils
             var el = element.NewElement(name);
             var el2 = element.NewElement(name2);
             var el3 = element.NewElement(name3);
-            Assert.True(element.HasChildNodes);
-            Assert.AreEqual(3, element.ChildNodes.Count);
-            Assert.AreEqual(el, element.FirstChild);
-            Assert.AreEqual(el2, element.ChildNodes[1]);
-            Assert.AreEqual(el3, element.LastChild);
+            ClassicAssert.True(element.HasChildNodes);
+            ClassicAssert.AreEqual(3, element.ChildNodes.Count);
+            ClassicAssert.AreEqual(el, element.FirstChild);
+            ClassicAssert.AreEqual(el2, element.ChildNodes[1]);
+            ClassicAssert.AreEqual(el3, element.LastChild);
         }
 
         [Test]
@@ -39,10 +40,10 @@ namespace SepaWriter.Test.Utils
         {
             var element = Prepare();
             var el = element.NewElement(name, value);
-            Assert.AreEqual(name, el.Name);
-            Assert.AreEqual(value.ToString(), el.InnerText);
-            Assert.True(element.HasChildNodes);
-            Assert.AreEqual(1, element.ChildNodes.Count);
+            ClassicAssert.AreEqual(name, el.Name);
+            ClassicAssert.AreEqual(value.ToString(), el.InnerText);
+            ClassicAssert.True(element.HasChildNodes);
+            ClassicAssert.AreEqual(1, element.ChildNodes.Count);
         }
 
         [Test]
@@ -50,10 +51,10 @@ namespace SepaWriter.Test.Utils
         {
             var element = Prepare();
             var el = element.NewElement(name);
-            Assert.AreEqual(name, el.Name);
-            Assert.IsEmpty(el.InnerText);
-            Assert.True(element.HasChildNodes);
-            Assert.AreEqual(1, element.ChildNodes.Count);
+            ClassicAssert.AreEqual(name, el.Name);
+            ClassicAssert.IsEmpty(el.InnerText);
+            ClassicAssert.True(element.HasChildNodes);
+            ClassicAssert.AreEqual(1, element.ChildNodes.Count);
         }
 
         [Test]
@@ -61,10 +62,10 @@ namespace SepaWriter.Test.Utils
         {
             var element = Prepare();
             var el = element.NewElement(name, null);
-            Assert.AreEqual(name, el.Name);
-            Assert.IsEmpty(el.InnerText);
-            Assert.True(element.HasChildNodes);
-            Assert.AreEqual(1, element.ChildNodes.Count);
+            ClassicAssert.AreEqual(name, el.Name);
+            ClassicAssert.IsEmpty(el.InnerText);
+            ClassicAssert.True(element.HasChildNodes);
+            ClassicAssert.AreEqual(1, element.ChildNodes.Count);
         }
     }
 }

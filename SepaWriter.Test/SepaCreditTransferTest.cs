@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using SepaWriter.Utils;
 
 namespace SepaWriter.Test
@@ -90,7 +91,7 @@ namespace SepaWriter.Test
             transfert.AddCreditTransfer(CreateTransaction(null, 13m, null));
 
             string result = transfert.AsXmlString();
-            Assert.False(result.Contains("<RmtInf>"));
+            ClassicAssert.False(result.Contains("<RmtInf>"));
         }
 
         [Test]
@@ -110,8 +111,8 @@ namespace SepaWriter.Test
 
             string result = transfert.AsXmlString();
 
-            Assert.True(result.Contains("<EndToEndId>endToendId1</EndToEndId>"));
-            Assert.True(result.Contains("<EndToEndId>endToendId2</EndToEndId>"));
+            ClassicAssert.True(result.Contains("<EndToEndId>endToendId1</EndToEndId>"));
+            ClassicAssert.True(result.Contains("<EndToEndId>endToendId2</EndToEndId>"));
         }
 
         [Test]
@@ -162,10 +163,10 @@ namespace SepaWriter.Test
 
             const decimal total = (amount + amount2 + amount3)*100;
 
-            Assert.AreEqual(total, transfert.HeaderControlSumInCents);
-            Assert.AreEqual(total, transfert.PaymentControlSumInCents);
+            ClassicAssert.AreEqual(total, transfert.HeaderControlSumInCents);
+            ClassicAssert.AreEqual(total, transfert.PaymentControlSumInCents);
 
-            Assert.AreEqual(MULTIPLE_ROW_RESULT, transfert.AsXmlString());
+            ClassicAssert.AreEqual(MULTIPLE_ROW_RESULT, transfert.AsXmlString());
         }
 
         [Test]
@@ -254,7 +255,7 @@ namespace SepaWriter.Test
         [Test]
         public void ShouldRejectNotAllowedXmlSchema()
         {
-            Assert.That(() => { new SepaCreditTransfer { Schema = SepaSchema.Pain00800102 }; },
+            ClassicAssert.That(() => { new SepaCreditTransfer { Schema = SepaSchema.Pain00800102 }; },
                 Throws.TypeOf<ArgumentException>().With.Property("Message").Contains("schema is not allowed!"));
         }
 
@@ -265,10 +266,10 @@ namespace SepaWriter.Test
             SepaCreditTransfer transfert = GetOneTransactionCreditTransfert(amount);
 
             const decimal total = amount*100;
-            Assert.AreEqual(total, transfert.HeaderControlSumInCents);
-            Assert.AreEqual(total, transfert.PaymentControlSumInCents);
+            ClassicAssert.AreEqual(total, transfert.HeaderControlSumInCents);
+            ClassicAssert.AreEqual(total, transfert.PaymentControlSumInCents);
 
-            Assert.AreEqual(ONE_ROW_RESULT, transfert.AsXmlString());
+            ClassicAssert.AreEqual(ONE_ROW_RESULT, transfert.AsXmlString());
         }
 
         [Test]
@@ -282,7 +283,7 @@ namespace SepaWriter.Test
             };
             transfert.AddCreditTransfer(CreateTransaction("Transaction Id 1", 100m, "Transaction description"));
 
-            Assert.That(() => { transfert.AsXmlString(); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("The debtor is mandatory."));            
+            ClassicAssert.That(() => { transfert.AsXmlString(); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("The debtor is mandatory."));            
         }
 
         [Test]
@@ -291,7 +292,7 @@ namespace SepaWriter.Test
             SepaCreditTransfer transfert = GetOneTransactionCreditTransfert(100m);
             transfert.InitiatingPartyName = null;
 
-            Assert.DoesNotThrow(() => { transfert.AsXmlString(); });
+            ClassicAssert.DoesNotThrow(() => { transfert.AsXmlString(); });
         }
 
         [Test]
@@ -299,7 +300,7 @@ namespace SepaWriter.Test
         {
             SepaCreditTransfer transfert = GetOneTransactionCreditTransfert(100m);
             transfert.MessageIdentification = null;
-            Assert.That(() => { transfert.AsXmlString(); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("The message identification is mandatory."));
+            ClassicAssert.That(() => { transfert.AsXmlString(); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("The message identification is mandatory."));
         }
 
         [Test]
@@ -310,7 +311,7 @@ namespace SepaWriter.Test
 
             string result = transfert.AsXmlString();
 
-            Assert.True(result.Contains("<PmtInfId>"+ transfert.MessageIdentification + "</PmtInfId>"));
+            ClassicAssert.True(result.Contains("<PmtInfId>"+ transfert.MessageIdentification + "</PmtInfId>"));
         }
 
         [Test]
@@ -324,13 +325,13 @@ namespace SepaWriter.Test
                     Debtor = Debtor
                 };
 
-            Assert.That(() => { transfert.AsXmlString(); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("At least one transaction is needed in a transfer."));
+            ClassicAssert.That(() => { transfert.AsXmlString(); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("At least one transaction is needed in a transfer."));
         }
 
         [Test]
         public void ShouldRejectInvalidDebtor()
         {
-            Assert.That(() => { new SepaCreditTransfer { Debtor = new SepaIbanData() }; }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("Debtor IBAN data are invalid."));
+            ClassicAssert.That(() => { new SepaCreditTransfer { Debtor = new SepaIbanData() }; }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("Debtor IBAN data are invalid."));
             
         }
 
@@ -340,7 +341,7 @@ namespace SepaWriter.Test
             var iban = (SepaIbanData)Debtor.Clone();
             iban.UnknownBic = true;
             
-            Assert.That(() => { new SepaCreditTransfer { Debtor = iban }; }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("Debtor IBAN data are invalid."));
+            ClassicAssert.That(() => { new SepaCreditTransfer { Debtor = iban }; }, Throws.TypeOf<SepaRuleException>().With.Property("Message").EqualTo("Debtor IBAN data are invalid."));
         }
 
         [Test]
@@ -348,7 +349,7 @@ namespace SepaWriter.Test
         {
             var transfert = new SepaCreditTransfer();
             
-            Assert.That(() => { transfert.AddCreditTransfer(null); }, Throws.TypeOf<ArgumentNullException>().With.Property("Message").Contains("transfer"));
+            ClassicAssert.That(() => { transfert.AddCreditTransfer(null); }, Throws.TypeOf<ArgumentNullException>().With.Property("Message").Contains("transfer"));
         }
 
         [Test]
@@ -356,7 +357,7 @@ namespace SepaWriter.Test
         {
             SepaCreditTransfer transfert = GetOneTransactionCreditTransfert(100m);
             transfert.AddCreditTransfer(CreateTransaction("UniqueId", 23.45m, "Transaction description 2"));
-            Assert.That(() => { transfert.AddCreditTransfer(CreateTransaction("UniqueId", 23.45m, "Transaction description 2")); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("must be unique in a transfer"));
+            ClassicAssert.That(() => { transfert.AddCreditTransfer(CreateTransaction("UniqueId", 23.45m, "Transaction description 2")); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("must be unique in a transfer"));
         }
 
         [Test]
@@ -370,7 +371,7 @@ namespace SepaWriter.Test
             transfert.AddCreditTransfer(trans);
             trans = CreateTransaction("Transaction Id 3", 23.45m, "Transaction description 2");
             trans.EndToEndId = "uniqueValue";
-            Assert.That(() => { transfert.AddCreditTransfer(trans); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("must be unique in a transfer"));            
+            ClassicAssert.That(() => { transfert.AddCreditTransfer(trans); }, Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("must be unique in a transfer"));            
         }
 
         [Test]
@@ -384,7 +385,7 @@ namespace SepaWriter.Test
             var doc = new XmlDocument();
             doc.Load(FILENAME);
 
-            Assert.AreEqual(ONE_ROW_RESULT, doc.OuterXml);
+            ClassicAssert.AreEqual(ONE_ROW_RESULT, doc.OuterXml);
         }
 
 
@@ -392,7 +393,7 @@ namespace SepaWriter.Test
         public void ShouldUseEuroAsDefaultCurrency()
         {
             var transfert = new SepaCreditTransfer();
-            Assert.AreEqual("EUR", transfert.DebtorAccountCurrency);
+            ClassicAssert.AreEqual("EUR", transfert.DebtorAccountCurrency);
         }
     }
 }

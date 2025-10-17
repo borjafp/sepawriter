@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Legacy;
 
 namespace SepaWriter.Test
 {
@@ -21,7 +22,7 @@ namespace SepaWriter.Test
         {
             var data = new SepaCreditTransferTransaction();
 
-            Assert.AreEqual("EUR", data.Currency);
+            ClassicAssert.AreEqual("EUR", data.Currency);
         }
 
         [Test]
@@ -43,30 +44,30 @@ namespace SepaWriter.Test
                     RemittanceInformation = remittanceInformation
                 };
 
-            Assert.AreEqual(currency, data.Currency);
-            Assert.AreEqual(amount, data.Amount);
-            Assert.AreEqual(id, data.Id);
-            Assert.AreEqual(endToEndId, data.EndToEndId);
-            Assert.AreEqual(remittanceInformation, data.RemittanceInformation);
-            Assert.AreEqual(Bic, data.Creditor.Bic);
-            Assert.AreEqual(Iban, data.Creditor.Iban);
+            ClassicAssert.AreEqual(currency, data.Currency);
+            ClassicAssert.AreEqual(amount, data.Amount);
+            ClassicAssert.AreEqual(id, data.Id);
+            ClassicAssert.AreEqual(endToEndId, data.EndToEndId);
+            ClassicAssert.AreEqual(remittanceInformation, data.RemittanceInformation);
+            ClassicAssert.AreEqual(Bic, data.Creditor.Bic);
+            ClassicAssert.AreEqual(Iban, data.Creditor.Iban);
 
             var data2 = data.Clone() as SepaCreditTransferTransaction;
 
-            Assert.NotNull(data2);
-            Assert.AreEqual(currency, data2.Currency);
-            Assert.AreEqual(amount, data2.Amount);
-            Assert.AreEqual(id, data2.Id);
-            Assert.AreEqual(endToEndId, data2.EndToEndId);
-            Assert.AreEqual(remittanceInformation, data2.RemittanceInformation);
-            Assert.AreEqual(Bic, data2.Creditor.Bic);
-            Assert.AreEqual(Iban, data2.Creditor.Iban);
+            ClassicAssert.NotNull(data2);
+            ClassicAssert.AreEqual(currency, data2.Currency);
+            ClassicAssert.AreEqual(amount, data2.Amount);
+            ClassicAssert.AreEqual(id, data2.Id);
+            ClassicAssert.AreEqual(endToEndId, data2.EndToEndId);
+            ClassicAssert.AreEqual(remittanceInformation, data2.RemittanceInformation);
+            ClassicAssert.AreEqual(Bic, data2.Creditor.Bic);
+            ClassicAssert.AreEqual(Iban, data2.Creditor.Iban);
         }
 
         [Test]
         public void ShouldRejectInvalidCreditor()
         {
-            Assert.That(() => { new SepaCreditTransferTransaction { Creditor = new SepaIbanData() }; },
+            ClassicAssert.That(() => { new SepaCreditTransferTransaction { Creditor = new SepaIbanData() }; },
                 Throws.TypeOf<SepaRuleException>().With.Property("Message").Contains("Creditor IBAN data are invalid."));            
         }
     }
