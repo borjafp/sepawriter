@@ -10,10 +10,10 @@ It follow "Customer Credit Transfer Initiation" &lt;pain.001.001.03&gt; defined 
 
 ## NuGet Package
 
-This library is available as a NuGet package: `Perrich.SepaWriter`
+This library is available as a NuGet package: `borjafp.SepaWriter`
 
 ```bash
-dotnet add package Perrich.SepaWriter
+dotnet add package borjafp.SepaWriter
 ```
 
 ## Requirements

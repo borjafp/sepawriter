@@ -29,14 +29,14 @@
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <RootNamespace>SepaWriter</RootNamespace>
-    <AssemblyName>Perrich.SepaWriter</AssemblyName>
+    <AssemblyName>borjafp.SepaWriter</AssemblyName>
     
     <!-- NuGet Package Metadata -->
-    <PackageId>Perrich.SepaWriter</PackageId>
+    <PackageId>borjafp.SepaWriter</PackageId>
     <Version>2.0.0</Version>
     <Authors>PERRICHOT Florian</Authors>
     <Company>PERRICHOT Florian</Company>
-    <Product>Perrich.SepaWriter</Product>
+    <Product>borjafp.SepaWriter</Product>
     <Description>Manage SEPA (Single Euro Payments Area) Credit and Debit Transfer for SEPA or international order. Supports pain.001.001.03, pain.001.001.04, pain.008.001.02, and pain.008.001.03 formats defined in ISO 20022.</Description>
     <PackageTags>SEPA;SepaWriter;ISO20022;payment;credit-transfer;debit-transfer;banking;financial</PackageTags>
     <PackageProjectUrl>https://github.com/borjafp/sepawriter</PackageProjectUrl>
