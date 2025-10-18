@@ -31,6 +31,7 @@ This will create:
 ### Package Contents
 The package includes:
 - `lib/net8.0/` - .NET 8.0 assemblies
+- `lib/net6.0/` - .NET 6.0 assemblies
 - `lib/netstandard2.0/` - .NET Standard 2.0 assemblies (for backward compatibility)
 - `README.md` - Package documentation
 
@@ -85,6 +86,7 @@ Follow [Semantic Versioning](https://semver.org/):
 
 The library targets:
 - `.NET 8.0` - Latest LTS version
+- `.NET 6.0` - Previous LTS version
 - `.NET Standard 2.0` - For broad compatibility with older frameworks
 
 ## Dependencies

@@ -19,6 +19,7 @@ dotnet add package borjafp.SepaWriter
 ## Requirements
 
 - .NET 8.0 or later
+- .NET 6.0 or later
 - .NET Standard 2.0 compatible frameworks
 
 English usage guide :

@@ -9,7 +9,7 @@ This document summarizes the migration of the SepaWriter project from .NET Core 
 
 #### SepaWriter.csproj
 - **Before**: Targeted `netcoreapp3.1` and `netstandard2.0`
-- **After**: Targets `net8.0` and `netstandard2.0`
+- **After**: Targets `net8.0`, `net6.0`, and `netstandard2.0`
 - Added comprehensive NuGet package metadata:
   - Package ID, version, authors, description
   - Tags for better discoverability
@@ -23,7 +23,7 @@ This document summarizes the migration of the SepaWriter project from .NET Core 
 
 #### SepaWriter.Test.csproj
 - **Before**: Targeted `netcoreapp2.2` and `netcoreapp3.1`
-- **After**: Targets `net8.0` only
+- **After**: Targets `net8.0` and `net6.0`
 - Updated test dependencies:
   - `NUnit`: 3.13.0 → 4.2.2
   - `NUnit3TestAdapter`: 3.17.0 → 4.6.0
@@ -81,8 +81,9 @@ This document summarizes the migration of the SepaWriter project from .NET Core 
 ## Compatibility
 
 ### Backward Compatibility
-- The library still targets .NET Standard 2.0 alongside .NET 8
+- The library targets .NET 8, .NET 6 (LTS), and .NET Standard 2.0
 - This ensures compatibility with:
+  - .NET 6+ (including .NET 6, .NET 7, .NET 8, and future versions)
   - .NET Framework 4.6.1+
   - .NET Core 2.0+
   - Mono 5.4+
@@ -90,13 +91,13 @@ This document summarizes the migration of the SepaWriter project from .NET Core 
 
 ### Breaking Changes
 - None for library consumers
-- Developers must use .NET 8 SDK to build the project
+- Developers must use .NET 6 SDK or later to build the project
 
 ## Testing
 
 All 80 unit tests pass successfully in both Debug and Release configurations:
 - Test framework updated to NUnit 4.2.2
-- Tests verified on .NET 8 runtime
+- Tests verified on .NET 8 and .NET 6 runtimes
 
 ## Next Steps
 
