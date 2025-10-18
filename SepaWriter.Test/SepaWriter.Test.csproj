@@ -4,7 +4,7 @@
     <IsPackable>false</IsPackable>
     <AssemblyName>Perrich.SepaWriter.Test</AssemblyName>
     <RootNamespace>Perrich.SepaWriter.Test</RootNamespace>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net8.0;net6.0</TargetFrameworks>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
