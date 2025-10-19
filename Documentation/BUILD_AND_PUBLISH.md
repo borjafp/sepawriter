@@ -20,6 +20,12 @@ dotnet test
 ## Creating NuGet Package
 
 ### Local Package Creation
+To create a package locally with a specific version:
+```bash
+dotnet pack SepaWriter/SepaWriter.csproj --configuration Release --output ./artifacts /p:Version=1.2.3
+```
+
+To create a package with the default version from the project file:
 ```bash
 dotnet pack SepaWriter/SepaWriter.csproj --configuration Release --output ./artifacts
 ```
@@ -59,28 +65,39 @@ The project includes two GitHub Actions workflows:
 
 #### Publish Package (Continuous Deployment)
 - Triggers on GitHub release creation
-- Can also be manually triggered
+- Can also be manually triggered with a custom version
 - Builds, tests, packs, and publishes to NuGet.org
 - Located in `.github/workflows/publish.yml`
 
 To publish a new version:
-1. Update the version in `SepaWriter/SepaWriter.csproj`
-2. Create a new GitHub release with a tag (e.g., `v2.0.0`)
-3. The workflow will automatically build and publish the package
+1. Create a new GitHub release with a version tag (e.g., `v2.0.0`, `v2.1.0-beta`)
+2. The workflow will automatically:
+   - Extract the version from the release tag (removing the `v` prefix)
+   - Build and test the code
+   - Pack the NuGet package with the extracted version
+   - Publish to NuGet.org
+
+**Important**: The NuGet package version is now automatically synchronized with the GitHub release tag. You no longer need to manually update the version in `SepaWriter.csproj`.
 
 ## Version Management
 
-The package version is managed in `SepaWriter/SepaWriter.csproj`:
-```xml
-<PropertyGroup>
-  <Version>2.0.0</Version>
-</PropertyGroup>
-```
+The package version is automatically extracted from GitHub release tags during the publish workflow. The base version in `SepaWriter/SepaWriter.csproj` (`2.0.0`) is only used as a fallback for local development builds.
+
+When creating a release:
+- Use tags like `v1.2.3` for stable releases (version becomes `1.2.3`)
+- Use tags like `v2.0.0-beta` for pre-releases (version becomes `2.0.0-beta`)
+- The workflow automatically strips the `v` prefix from tags
 
 Follow [Semantic Versioning](https://semver.org/):
 - MAJOR version for incompatible API changes
 - MINOR version for backward-compatible functionality additions
 - PATCH version for backward-compatible bug fixes
+
+### Manual Version Override
+To publish with a specific version without creating a release:
+1. Go to Actions → Publish NuGet Package → Run workflow
+2. Enter the desired version (e.g., `2.1.0`)
+3. The workflow will pack and publish with that version
 
 ## Target Frameworks
 
