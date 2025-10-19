@@ -22,7 +22,7 @@ dotnet test
 ### Local Package Creation
 To create a package locally with a specific version:
 ```bash
-dotnet pack SepaWriter/SepaWriter.csproj --configuration Release --output ./artifacts /p:Version=1.2.3
+dotnet pack SepaWriter/SepaWriter.csproj --configuration Release /p:Version=1.2.3 --output ./artifacts
 ```
 
 To create a package with the default version from the project file:
@@ -81,7 +81,7 @@ To publish a new version:
 
 ## Version Management
 
-The package version is automatically extracted from GitHub release tags during the publish workflow. The base version in `SepaWriter/SepaWriter.csproj` (`2.0.0`) is only used as a fallback for local development builds.
+The package version is automatically extracted from GitHub release tags during the publish workflow. The version in `SepaWriter/SepaWriter.csproj` (`2.0.0`) is used only when building/packing locally without specifying the `/p:Version` parameter.
 
 When creating a release:
 - Use tags like `v1.2.3` for stable releases (version becomes `1.2.3`)
